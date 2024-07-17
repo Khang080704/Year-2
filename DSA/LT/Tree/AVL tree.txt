@@ -1,0 +1,416 @@
+//#include<iostream>
+//using namespace std;
+//
+//struct Node {
+//	int data;
+//	Node* left;
+//	Node* right;
+//	int heigh;
+//};
+//
+//int max(int a, int b) {
+//	if (a > b) return a; return b;
+//}
+//
+//int heigh(Node* root) {
+//	if (root == NULL) {
+//		return 0;
+//	}
+//	return root->heigh;
+//}
+//Node* createNode(int data) {
+//	Node* p = new Node;
+//	if (p == NULL) {
+//		cout << "Khong du vung nho";
+//	}
+//	else {
+//		p->data = data;
+//		p->left = NULL;
+//		p->right = NULL;
+//		p->heigh = 1;
+//		return p;
+//	}
+//}
+//
+//Node* search(Node* root, int x) {
+//	if (root == NULL || root->data == x) {
+//		return root;
+//	}
+//	else {
+//		if (x < root->data) {
+//			return search(root->left, x);
+//		}
+//		else {
+//			return search(root->right, x);
+//		}
+//	}
+//}
+//
+//void printPreOrder(Node* root) {
+//	if (root == NULL) {
+//		return;
+//	}
+//	else {
+//		cout << root->data << " ";
+//		printPreOrder(root->left);
+//		printPreOrder(root->right);
+//	}
+//}
+//
+//void printInOrder(Node* root) {
+//	if (root == NULL) {
+//		return;
+//	}
+//	else {
+//		printInOrder(root->left);
+//		cout << root->data << " ";
+//		printInOrder(root->right);
+//	}
+//}
+//
+//void printPosOrder(Node* root) {
+//	if (root == NULL) {
+//		return;
+//	}
+//	else {
+//		printPosOrder(root->left);
+//		printPosOrder(root->right);
+//		cout << root->data << " ";
+//	}
+//}
+//
+//
+//int updateHeigh(Node* p) {
+//	return 1 + max(heigh(p->left), heigh(p->right));
+//}
+//
+//Node* rightRotate(Node*& y)
+//{
+//	Node* x = y->left;
+//	Node* T2 = x->right;
+//
+//	// Perform rotation  
+//	x->right = y;
+//	y->left = T2;
+//
+//	// Update heights  
+//	y->heigh = updateHeigh(y);
+//	x->heigh = updateHeigh(x);
+//
+//	// Return new root  
+//	return x;
+//}
+//
+//// A utility function to left  
+//// rotate subtree rooted with x  
+//// See the diagram given above.  
+//Node* leftRotate(Node* x)
+//{
+//	Node* y = x->right;
+//	Node* T2 = y->left;
+//
+//	// Perform rotation  
+//	y->left = x;
+//	x->right = T2;
+//
+//	// Update heights  
+//	x->heigh = updateHeigh(x);
+//	y->heigh = updateHeigh(y);
+//
+//	// Return new root  
+//	return y;
+//}
+//
+//int getBalance(Node* root) {
+//	if (root == NULL) {
+//		return 0;
+//	}
+//	return heigh(root->left) - heigh(root->right);
+//}
+//
+//Node* addNode(Node*& root, int value) {
+//	if (root == NULL) {
+//		root = createNode(value);
+//	}
+//	else {
+//		if (value < root->data) {
+//			root->left = addNode(root->left, value);
+//		}
+//		else {
+//			if (value > root->data) {
+//				root->right = addNode(root->right, value);
+//			}
+//			else {
+//				return root;
+//			}
+//		}
+//	}
+//	
+//
+//
+//	/*2. Update height for ancestor node*/
+//	root->heigh = updateHeigh(root);
+//	int balance = getBalance(root);
+//	//Left Left
+//	if (balance > 1 && value < root->left->data) {
+//		return rightRotate(root);
+//	}
+//
+//	//Left Right -> left-right rotation
+//	if (balance > 1 && value > root->left->data) {
+//		root->left = leftRotate(root->left);
+//		return rightRotate(root);
+//	}
+//
+//	//Right Right
+//	if (balance < -1 && value > root->right->data) {
+//		return leftRotate(root);
+//	}
+//
+//	//right left
+//	if (balance < -1 && value > root->right->data) {
+//		root->right = rightRotate(root->right);
+//		return leftRotate(root);
+//	}
+//
+//	return root;
+//}
+//
+//int main()
+//{
+//	Node* root = NULL;
+//
+//	for (int i = 1; i <= 7; i++) {
+//		int x; cin >> x;
+//		root = addNode(root, x);
+//	}
+//
+//	/*printInOrder(root);
+//	cout << endl;*/
+//	printPreOrder(root);
+//	cout << endl;
+//	/*printPosOrder(root);
+//	cout << endl;
+//	cout << hight(root);*/
+//}
+
+//#include <iostream>
+//#include<algorithm>
+//using namespace std;
+//
+//struct NODE {
+//	int key;
+//	NODE* pLeft;
+//	NODE* pRight;
+//	int height;
+//};
+//
+//NODE* CreateNode(int data) {
+//	NODE* newNode = new NODE;
+//	newNode->key = data;
+//	newNode->pLeft = NULL;
+//	newNode->pRight = NULL;
+//	newNode->height = 1;
+//	return newNode;
+//}
+//
+//int HeightNode(NODE* pRoot) {
+//	if (pRoot == NULL) return 0;
+//	else {
+//		pRoot->height = 1 + max(HeightNode(pRoot->pLeft),
+//			HeightNode(pRoot->pRight));
+//		return pRoot->height;
+//	}
+//}
+//
+//NODE* RightRotate(NODE* pRoot)
+//{
+//	NODE* newNode = pRoot->pLeft;
+//	pRoot->pLeft = newNode->pRight;
+//	newNode->pRight = pRoot;
+//	pRoot = newNode;
+//
+//	pRoot->height = HeightNode(pRoot);
+//	newNode->height = HeightNode(pRoot);
+//
+//	return newNode;
+//}
+//
+//
+//NODE* LeftRotate(NODE* pRoot)
+//{
+//	NODE* newNode = pRoot->pRight;
+//	pRoot->pRight = newNode->pLeft;
+//	newNode->pLeft = pRoot;
+//	pRoot = newNode;
+//
+//	pRoot->height = HeightNode(pRoot);
+//	newNode->height = HeightNode(pRoot);
+//
+//	return newNode;
+//}
+//
+//int GetBalance(NODE* pRoot)
+//{
+//	if (pRoot == NULL)
+//		return 0;
+//	return HeightNode(pRoot->pLeft) - HeightNode(pRoot->pRight);
+//}
+//
+//NODE* Insert(NODE*& pRoot, int x) {
+//	if (pRoot == NULL) {
+//		return (CreateNode(x));
+//	}
+//	else {
+//		if (x < pRoot->key) {
+//			pRoot->pLeft = Insert(pRoot->pLeft, x);
+//		}
+//		else {
+//			if (x > pRoot->key)
+//				pRoot->pRight = Insert(pRoot->pRight, x);
+//			else {
+//				DO NOTHING
+//			}
+//		}
+//
+//		/* 2. Update height of this ancestor node */
+//		pRoot->height = 1 + max(HeightNode(pRoot->pLeft),
+//			HeightNode(pRoot->pRight));
+//
+//		/* 3. Get the balance factor of this ancestor
+//			node to check whether this node became
+//			unbalanced */
+//		int balance = GetBalance(pRoot);
+//
+//		 If this node becomes unbalanced, then  
+//		 there are 4 cases  
+//
+//		 Left Left Case  
+//		if (balance > 1 && x < pRoot->pLeft->key)
+//		{
+//			return RightRotate(pRoot);
+//		}
+//
+//		 Right Right Case  
+//		if (balance < -1 && x > pRoot->pRight->key)
+//		{
+//			return LeftRotate(pRoot);
+//		}
+//
+//		 Left Right Case  
+//		if (balance > 1 && x > pRoot->pLeft->key)
+//		{
+//			pRoot->pLeft = LeftRotate(pRoot->pLeft);
+//			return RightRotate(pRoot);
+//		}
+//
+//		 Right Left Case  
+//		if (balance < -1 && x < pRoot->pRight->key)
+//		{
+//			pRoot->pRight = RightRotate(pRoot->pRight);
+//			return LeftRotate(pRoot);
+//		}
+//		return pRoot;
+//
+//	}
+//}
+//
+//void NLR(NODE* pRoot)
+//{
+//	if (pRoot != NULL)
+//	{
+//		cout << pRoot->key << " ";
+//		NLR(pRoot->pLeft);
+//		NLR(pRoot->pRight);
+//	}
+//}
+//int countLeaf(NODE* proot) {
+//	if (proot == NULL) {
+//		return 0;
+//	}
+//	else {
+//		if (proot->pLeft == NULL && proot->pRight == NULL) {
+//			return 1;
+//		}
+//		else {
+//			return countLeaf(proot->pLeft) + countLeaf(proot->pRight);
+//		}
+//	}
+//}
+//
+//int Level(NODE* pRoot,NODE* p, int level) {
+//	if (p == NULL) {
+//		return 0;
+//	}
+//	else {
+//		if (pRoot == p) {
+//			return level;
+//		}
+//		else {
+//			if (pRoot->key > p->key) {
+//				return Level(pRoot->pLeft, p, level + 1);
+//			}
+//			else {
+//				return Level(pRoot->pRight, p, level + 1);
+//			}
+//		}
+//	}
+//}
+//
+//NODE* search(NODE* root, int x) {
+//	if (root == NULL) {
+//		return NULL;
+//	}
+//	else {
+//		if (root->key == x) {
+//			return root;
+//		}
+//		else {
+//			if (x < root->key) {
+//				return search(root->pLeft , x);
+//			}
+//			else {
+//				return search(root->pRight, x);
+//			}
+//		}
+//	}
+//}
+//
+//int countValue(NODE* p) { // Tinh tong node cua 2 cay con trai phai cua node p
+//	if (p == NULL) {
+//		return 0;
+//	}
+//	else {
+//		return 1 + countValue(p->pLeft) + countValue(p->pRight);
+//	}
+//}
+//
+//int countGreater(NODE* pRoot, int x) {
+//	NODE* find = search(pRoot, x);
+//	if (find == NULL) {
+//		return 0;
+//	}
+//	else {
+//		int greaterNode = countValue(find->pRight);
+//		return greaterNode;
+//	}
+//}
+//
+//
+//int main()
+//{
+//	NODE* pRoot = NULL;
+//
+//	pRoot = Insert(pRoot, 10);
+//	pRoot = Insert(pRoot, 20);
+//	pRoot = Insert(pRoot, 30);
+//	pRoot = Insert(pRoot, 40);
+//	pRoot = Insert(pRoot, 50);
+//	pRoot = Insert(pRoot, 25);
+//	pRoot = Insert(pRoot, 60);
+//	pRoot = Insert(pRoot, 70);
+//
+//	NLR(pRoot);
+//	cout << countGreater(pRoot, 30);
+//	return 0;
+//}

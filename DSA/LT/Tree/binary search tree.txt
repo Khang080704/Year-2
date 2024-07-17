@@ -1,0 +1,121 @@
+#include<iostream>
+using namespace std;
+
+struct Node {
+	int data;
+	Node* left;
+	Node* right;
+};
+
+Node* createNode(int data) {
+	Node* p = new Node;
+	if (p == NULL) {
+		cout << "Khong du vung nho";
+	}
+	else {
+		p->data = data;
+		p->left = NULL;
+		p->right = NULL;
+		return p;
+	}
+}
+
+Node* addNode(Node*& root, int value) {
+	if (root == NULL) {
+		root = createNode(value);
+	}
+	else {
+		if (value < root->data) {
+			root->left = addNode(root->left, value);
+		}
+		else {
+			if (value > root->data) {
+				root->right = addNode(root->right, value);
+			}
+		}
+	}
+	return root;
+}
+
+Node* search(Node* root, int x) {
+	if (root == NULL || root->data == x) {
+		return root;
+	}
+	else {
+		if (x < root->data) {
+			return search(root->left, x);
+		}
+		else {
+			return search(root->right, x);
+		}
+	}
+}
+
+void printPreOrder(Node* root) {
+	if (root == NULL) {
+		return;
+	}
+	else {
+		cout << root->data << " ";
+		printPreOrder(root->left);
+		printPreOrder(root->right);
+	}
+}
+
+void printInOrder(Node* root) {
+	if (root == NULL) {
+		return;
+	}
+	else {
+		printInOrder(root->left);
+		cout << root->data << " ";
+		printInOrder(root->right);
+	}
+}
+
+void printPosOrder(Node* root) {
+	if (root == NULL) {
+		return;
+	}
+	else {
+		printPosOrder(root->left);
+		printPosOrder(root->right);
+		cout << root->data << " ";
+	}
+}
+
+int hight(Node* root) {
+	if (root == NULL) {
+		return 0;
+	}
+	else {
+		int left_hight = hight(root->left);
+		int right_hight = hight(root->right);
+		if (left_hight > right_hight) {
+			return left_hight + 1;
+		}
+		else {
+			return right_hight + 1;
+		}
+	}
+
+}
+
+int main()
+{
+	Node* root = NULL;
+	
+	for (int i = 1; i <= 7; i++) {
+		int x; cin >> x;
+		addNode(root, x);
+	}
+	
+
+	printInOrder(root);
+	cout << endl;
+	printPreOrder(root);
+	cout << endl;
+	printPosOrder(root);
+	cout << endl;
+	cout << hight(root);
+}

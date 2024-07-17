@@ -1,0 +1,105 @@
+#include<iostream>
+#include<list>
+using namespace std;
+
+struct Hash {
+	int bucket;
+	list<int>* table;
+};
+
+void initHash(Hash& h, int n) {
+	h.bucket = n ;
+	h.table = new list<int>[h.bucket];
+}
+
+enum status
+{
+	isEmpty = 0,
+	isFull = 1,
+	isRemove = 2,
+};
+
+int hashFunction(Hash h, int x) {
+	return x % h.bucket;
+}
+
+int checkStatus(list<int> table) {
+	if (table.empty() == false) {
+		return status::isFull;
+	}
+	else {
+		return status::isEmpty;
+	}
+}
+
+void insertItem(Hash& h, int value) {
+	int index = hashFunction(h, value);
+	while (checkStatus(h.table[index]) == status::isFull) {
+		index++;
+	}
+	h.table[index].push_back(value);
+}
+
+//void deleteItem(Hash& h, int value) {
+//	int index = hashFunction(h, value);
+//	list<int>::iterator i;
+//
+//	for (int j = index; j < h.bucket; j++) {
+//		for (i = h.table[index].begin(); i != h.table[index].end(); i++) {
+//			if (*i == value) {
+//				break;
+//			}
+//		}
+//	}
+//	
+//	h.table[index].erase(i);
+//}
+
+void showHash(Hash h) {
+	for (int i = 0; i < h.bucket; i++) {
+		cout << "Bucket " << i << ": ";
+		for (list<int>::iterator j = h.table[i].begin(); j != h.table[i].end(); j++) {
+			cout << *j << " ";
+		}
+		cout << endl;
+	}
+}
+
+int search(Hash h, int key, int find_index) {
+	list<int>::iterator value = h.table[find_index].begin();
+	if (checkStatus(h.table[find_index]) == status::isFull && *value == key) {
+		return find_index;
+	}
+	if (find_index == h.bucket - 1) {
+		return -1;
+	}
+	else {
+		return search(h, key, find_index + 1);
+	}
+}
+
+int main()
+{
+	int a[] = {15,28,4,31,17,59,22,10,88 };
+	int n = 13;
+	Hash h;
+	initHash(h, n);
+	for (int i = 0; i < sizeof(a)/sizeof(a[0]); i++) {
+		insertItem(h, a[i]);
+	}
+
+	showHash(h);
+	int value; 
+	cout << "Enter value need to find: ";
+	cin >> value;
+	int find_index = hashFunction(h, value);
+	int bucket = search(h, value,find_index);
+	if (bucket == -1) {
+		cout << value << " is not in hash ";
+	}
+	else {
+		cout << value << " is is bucket: " << bucket;
+	}
+	
+}
+

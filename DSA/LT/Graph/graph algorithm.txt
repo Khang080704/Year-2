@@ -1,0 +1,272 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<queue>
+#include<vector>
+
+using namespace std;
+
+struct graph {
+	int v; // Dinh
+	int** adj; // bieu dien bang ma tran ke (mang 2 chieu)
+};
+
+void init_graph(graph& G, int v) {
+	//Quy uoc ki hieu dinh tu 0 -> v - 1
+	G.v = v;
+	for (int i = 0; i < v; i++) {
+		G.adj = new int* [v];
+	}
+	// khoi tao ma tran vs gia tri 0
+	for (int i = 0; i < v; i++) {
+		G.adj[i] = new int[v];
+	}
+
+	for (int i = 0; i < v; i++) {
+		for (int j = 0; j < v; j++) {
+			G.adj[i][j] = 0;
+		}
+	}
+}
+
+void addEdge(graph& G, int v, int w) { //them canh
+	//them 1 canh noi giua v va w thi trong ma tran ke
+	//tai vi tri hang v cot w cong them 1 va nguoc lai (don do thi vo huong)
+	G.adj[v][w]++;
+	G.adj[w][v]++;
+}
+
+void addWeightEdge(graph& G, int v, int w, int weight) {
+	G.adj[v][w] = weight;
+	G.adj[w][v] = weight;
+}
+
+void print_maxtrix(graph G, int v) {
+
+	for (int i = 0; i < v; i++) {
+		for (int j = 0; j < v; j++) {
+			cout << G.adj[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
+void DFS(graph G, int v, int i, bool*& edge, int& dem) {
+	// Duyet do thi va dem so dinh dc duyet bang ma tran ke
+	edge[i] = true;
+	for (int j = 0; j < v; j++) {
+		if (G.adj[i][j] != 0 && edge[j] == false) {
+			dem++;
+			DFS(G, v, j, edge, dem);
+		}
+	}
+}
+
+bool connected(graph G, int v, int i, bool*& check,int& dem) {//Kiem tra tinh lien thong
+	DFS(G, v, 0, check, dem);
+	//Neu so dinh dc duyet qua = so dinh ban dau thi lien thong
+	if (dem == v) {
+		return true;
+	}
+	else {
+		return false;
+	}
+	delete[] check;
+}
+
+void generate_undirected(graph& G, int v) {
+	for (int i = 0; i < v; i++) {
+		for (int j = 0; j < v; j++) {
+			if (G.adj[i][j] != 0) {
+				G.adj[j][i] = G.adj[i][j];
+			}
+		}
+	}
+}
+
+graph complement(graph G, int v) {
+	graph complement_graph;
+	init_graph(complement_graph, v);
+	for (int i = 0; i < v; i++) {
+		for (int j = 0; j < v; j++) {
+			if (G.adj[i][j] == 0) {
+				complement_graph.adj[i][j] ++;
+			}
+		}
+	}
+	return complement_graph;
+}
+
+graph convert(graph G, int v) {
+	graph convert_graph;
+	init_graph(convert_graph, v);
+	for (int i = 0; i < v; i++) {
+		for (int j = 0; j < v; j++) {
+			if (G.adj[i][j] == 1) {
+				convert_graph.adj[j][i] = 1;
+			}
+		}
+	}
+	return convert_graph;
+}
+
+void count_edge_and_vertiex(graph G, int v) {
+	cout <<"Number of vertices: " << G.v << endl;
+	int count_edge = 0;
+	for (int i = 0; i < v; i++) {
+		for (int j = 0; j < v; j++) {
+			if (G.adj[i][j] != 0) {
+				count_edge;
+			}
+		}
+	}
+	cout << "Number of edges: " << count_edge / 2;
+}
+
+int degree(graph G, int v, int vertice) {
+	int sum_degree = 0;
+	for (int i = 0; i < v; i++) {
+		sum_degree += G.adj[vertice][i];
+	}
+	return sum_degree;
+}
+
+//----------------------------------Prime---------------------------------------
+
+int minKey(graph G, vector<bool>& mstSet, vector<int> key ) {
+	int min = INT_MAX;
+	int min_index = 0;
+	for (int i = 0; i < G.v; i++) {
+		if (mstSet[i] == false && key[i] < min) {
+			min = key[i];
+			min_index = i;
+		}
+	}
+
+	return min_index;
+}
+
+void printMST(graph G,int source ,vector<int> parent) {
+	for (int i = source + 1; i < G.v ; i++) {
+		cout << parent[i] << " - " << i << " Weight: " << G.adj[i][parent[i]] << endl;
+	}
+	for (int i = 0; i < source; i++) {
+		cout << parent[i] << " - " << i << " Weight: " << G.adj[i][parent[i]] << endl;
+	}
+}
+
+int sum_mst(vector<int> key) {
+	int sum = 0;
+	for (int i = 0; i < key.size(); i++) {
+		sum += key[i];
+	}
+	return sum;
+}
+
+void prime_spanning_tree(graph G,int source) {
+	vector<int> parent(G.v, INT_MAX);
+	vector<int> key(G.v, INT_MAX);
+	vector<bool> mstSet(G.v, false);
+
+	key[0] = 0;
+	parent[0] = -1;
+
+	for (int i = 0; i < G.v - 1; i++) {
+		int u = minKey(G, mstSet, key);
+		mstSet[u] = true;
+
+		for (int v = 0; v < G.v; v++) {
+			if (G.adj[u][v] && mstSet[v] == false && G.adj[u][v] < key[v]) {
+				parent[v] = u;
+				key[v] = G.adj[u][v];
+			}
+		}
+	}
+	printMST(G, parent);
+	cout << "Min mst weight: " << sum_mst(key);
+
+}
+
+//-------------------------------------Dijstra----------------------------------------
+int minDistance(graph G,vector<int> dis, vector<bool> sptSet) {
+	int min = INT_MAX;
+	int min_index = INT_MAX;
+
+	for (int i = 0; i < G.v; i++) {
+		if (sptSet[i] == false && dis[i] <= min) {
+			min = dis[i];
+			min_index = i;
+		}
+	}
+
+	return min_index;
+}
+
+void printPath(int source,int present ,vector<int> parent) {
+	if (present == source) {
+		return;
+	}
+	else {
+		printPath(source, parent[present], parent);
+		cout << parent[present] << " - ";
+	}
+}
+
+void printSolution(graph G,int source , vector<int> dist, vector<int> parent) {
+	cout << "Distance from " << source << " to:" << endl;
+	for (int i = 0; i < G.v; i++) {
+		cout << i << ". Distance: " << dist[i] << " Path:";
+		printPath(source, i, parent);
+		cout << i << endl;
+		
+	}
+}
+
+void dijkstra(graph G, int source) {
+	vector<int> dist(G.v, INT_MAX);
+	vector<bool> sptSet(G.v, false);
+	vector<int> parent(G.v, INT_MAX);
+
+	dist[source] = 0;
+	parent[source] = -1;
+
+	for (int i = 0; i < G.v - 1; i++) {
+		int u = minDistance(G, dist, sptSet);
+		sptSet[u] = true;
+
+		for (int v = 0; v < G.v; v++) {
+			if (sptSet[v] == false && G.adj[u][v] && dist[u] + G.adj[u][v] <= dist[v]
+				&& dist[u] != INT_MAX) {
+				parent[v] = u;
+				dist[v] = dist[u] + G.adj[u][v];
+			}
+		}
+	}
+
+	printSolution(G, source, dist, parent);
+}
+
+int main()
+{
+	int v = 9;
+	graph G;
+	init_graph(G, v);
+	addWeightEdge(G, 0, 1, 4);
+	addWeightEdge(G, 1, 2, 8);
+	addWeightEdge(G, 2, 3, 7);
+	addWeightEdge(G, 3, 4, 9);
+	addWeightEdge(G, 4, 5, 10);
+	addWeightEdge(G, 5, 6, 2);
+	addWeightEdge(G, 6, 7, 1);
+	addWeightEdge(G, 7, 0, 8);
+	addWeightEdge(G, 7, 1, 11);
+	addWeightEdge(G, 3, 5, 14);
+	addWeightEdge(G, 7, 8, 7);
+	addWeightEdge(G, 2, 5, 4);
+	addWeightEdge(G, 2, 8, 2);
+	addWeightEdge(G, 8, 6, 6);
+
+	
+	//prime_spanning_tree(G, 0);
+	dijkstra(G, 0);
+}

@@ -1,0 +1,180 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+void nhapMang(int* a, int& n) {
+	for (int i = 0; i < n; i++) {
+		cout << "Nhap phan tu thu " << i + 1 << " : ";
+		cin >> a[i];
+	}
+}
+
+void xuatMang(int* a, int n) {
+	for (int i = 0; i < n; i++) {
+		cout << a[i] << " ";
+	}
+	cout << endl;
+}
+
+//------------------------------------------------------------------------------
+
+// Thuat toan sap xep
+//1. Selection sort
+/*void selectionSort(int* a, int n) {
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = i + 1; j < n; j++) {
+			if (a[i] < a[j]) {
+				int temp = a[i];
+				a[i] = a[j];
+				a[j] = temp;
+			}
+		}
+	}
+} */
+
+//-------------------------------------------------------------------------------
+
+//2. Sap xep chen
+/*void inserctionSort(int* a, int n) {
+	int saved = 0; // Bien trung gian luu lai gia tri can chen
+	int i, j;
+
+	for (i = 1; i < n; i++) {
+		saved = a[i]; // Luu lai gia tri phan tu can chen
+		//Dich chuyen cac phan tu sang ben phai
+		for (j = i; j > 0 && saved < a[j - 1]; j--) {
+			a[j] = a[j - 1];
+		}
+		a[j] = saved;
+	}
+} */
+
+//-----------------------------------------------------------------------
+
+//3. Bubble sort
+/*void bubbleSort(int* a, int n) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n - i - 1; j++) {
+			if (a[j] > a[j + 1]) {
+				int temp = a[j];
+				a[j] = a[j + 1];
+				a[j + 1] = temp;
+			}
+		}
+	}
+}*/
+
+//------------------------------------------------------------------------------
+
+//4. Quick sort
+/*Y tuong: Su dung 1 truc chinh (pivot) de chia mang thanh 2 phan:
+           nhung phan tu co gia tri nho hon pivot thanh 1 mang nam ben trai
+		   pivot, va nhung phan tu co gia tri lon hon pivot thanh 1 mang nam
+		   ben phai pivot. Dung de quy goi lai chinh no tiep chua chia cac mang
+		   con do thanh cac mang con nho hon cho den khi nao khong chia duoc
+		   nua.*/
+
+void HoanVi(int& a, int& b) {
+	int temp = a;
+	a = b;
+	b = temp;
+}
+
+//Ham duoi day chia mang thanh 2 mang, 1 mang co gia tri nho hon hoac bang pivot
+//va 1 phan co gia tri lon hon pivot
+//int partition(int* a, int left, int right) {
+//	int pivot = a[right];
+//	int id = left - 1;
+//
+//	for (int i = left; i < right; i++) {
+//		if (a[i] < pivot) {
+//			id++;
+//			HoanVi(a[id], a[i]);
+//		}
+//	}
+//
+//	id++;
+//	swap(a[id],a[right]);
+//	return id;
+//}
+//
+////Ham quick sort
+//void quickSort(int* a, int left, int right) {
+//	if (left < right) {
+//		int id_pivot = partition(a, left, right);
+//		quickSort(a, left, id_pivot - 1);
+//		quickSort(a, id_pivot + 1, right);
+//	}
+//}
+
+//------------------------------------------------------------------------------
+
+//5. Merge Sort
+/*Y tuong: 
+	1. Chia danh sach can sap xep thanh cac danh sach con doc lap. Dieu nay duoc thuc
+	   hien bang cach chia doi danh sach ban dau va tiep tuc chia doi cho den khi chi
+	   con 1 phan tu trong moi danh sach con
+	2. Sap xep cac danh sach con nay bang cach su dung de quy. Tuc la tiep tuc chia
+	   danh sach con do thanh cac danh sach con nho hon va sap xep chung cho den khi
+	   chi con 1 phan tu duy nhat trong moi danh sach con
+	3. Tron cac danh sach con da sap xep lai voi nhau de tao thanh danh sach lon hon
+	   duoc sap xep dung thu tu. Qua trinh tron nay duoc thuc hien bang cach so sanh
+	   phan tu dau tien cua moi danh sach con va chon phan tu nho hon de dua vao danh
+	   sach ket qua. Tiep tuc thuc hien cho den khi 1 trong 2 danh sach con da duoc
+	   tron het
+	4. Tra ve danh sach da duoc sap xep*/
+
+//void merge(int* a, int left, int mid, int right) {
+//	int m = left;
+//	int n = mid + 1;
+//	int k = 0;
+//	int* temp = new int[right - left + 1];
+//	while (!((m > mid) && (n > right))) {
+//		if ((a[m] < a[n] && m <= mid && n <= right) || (n > right)) {
+//			temp[k++] = a[m++];
+//		}
+//		else {
+//			temp[k++] = a[n++];
+//		}
+//	}
+//	
+//	for (int i = 0; i < k; i++) {
+//		a[left + 1] = temp[i];
+//	}
+//
+//	delete[] temp;
+//}
+//
+//void mergeSort(int* a, int left, int right) {
+//	if (left < right) {
+//		int mid = (left + right) / 2;
+//		mergeSort(a, left, mid);
+//		mergeSort(a, mid + 1, right);
+//		merge(a, left, mid, right);
+//	}
+//}
+
+
+int main() {
+	int n = 0;
+	cout << "Nhap so luong phan tu trong mang: "; cin >> n;
+	int* a = new int[n];
+	
+	nhapMang(a, n);
+	
+	cout << "Mang truoc khi sap xep la: ";
+	xuatMang(a, n);
+
+	//sort(a,n);
+	//selectionSort(a, n);
+	//inserctionSort(a, n);
+	//bubbleSort(a, n);
+	//quickSort(a, 0, n - 1);
+	//mergeSort(a, 0, n - 1);
+
+	cout << "Mang sau khi sap xep la: ";
+	xuatMang(a, n);
+
+	delete[] a;
+	return 0;
+}

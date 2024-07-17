@@ -1,0 +1,316 @@
+                 --------RANDOM_DATA---------
+
+                         Size: 10000
+Selection sort:         dur1 = 95.1962ms                        count = 100030003
+Insertion sort:         dur1 = 70.5768ms                        count = 50164649
+Bubble sort:    dur1 = 197.053ms                        count = 99987960
+Shaker sort:    dur1 = 192.563ms                        count = 101357467
+Shell sort:     dur1 = 1.3564ms                 count = 637302
+Heap Sort:      dur1 = 1.6236ms                 count = 638016
+Merge sort:     dur1 = 3.6151ms                 count = 583631
+Quick sort:     dur1 = 1.0282ms                 count = 345384
+Counting sort:  dur1 = 0.225ms                  count = 60003
+Radix sort:     dur1 = 0.5798ms                 count = 140056
+Flash sort:     dur1 = 0.2399ms                 count = 99222
+
+                         Size: 30000
+Selection sort:         dur1 = 795.833ms                        count = 900090003
+Insertion sort:         dur1 = 621.519ms                        count = 448660836
+Bubble sort:    dur1 = 1945.69ms                        count = 900021192
+Shaker sort:    dur1 = 1734.09ms                        count = 902512480
+Shell sort:     dur1 = 4.6975ms                 count = 2232387
+Heap Sort:      dur1 = 5.7786ms                 count = 2150020
+Merge sort:     dur1 = 11.5452ms                        count = 1937261
+Quick sort:     dur1 = 3.3346ms                 count = 1122331
+Counting sort:  dur1 = 0.6576ms                 count = 180003
+Radix sort:     dur1 = 2.0809ms                 count = 510070
+Flash sort:     dur1 = 0.8071ms                 count = 290691
+
+                         Size: 50000
+Selection sort:         dur1 = 2120.41ms                        count = 2500150003
+Insertion sort:         dur1 = 1723.84ms                        count = 1247849336
+Bubble sort:    dur1 = 5586.63ms                        count = 2499933537
+Shaker sort:    dur1 = 4886.99ms                        count = 2497587513
+Shell sort:     dur1 = 8.966ms                  count = 4425509
+Heap Sort:      dur1 = 9.5233ms                 count = 3772694
+Merge sort:     dur1 = 18.5477ms                        count = 3382968
+Quick sort:     dur1 = 5.6501ms                 count = 1909924
+Counting sort:  dur1 = 0.9048ms                 count = 265539
+Radix sort:     dur1 = 3.7509ms                 count = 850070
+Flash sort:     dur1 = 1.6092ms                 count = 495675
+
+                         Size: 100000
+Selection sort:         dur1 = 8603.61ms                        count = 10000300003
+Insertion sort:         dur1 = 6873.25ms                        count = 4996773979
+Bubble sort:    dur1 = 23507.5ms                        count = 9999990237
+Shaker sort:    dur1 = 21239.3ms                        count = 9980375050
+Shell sort:     dur1 = 20.3628ms                        count = 10179766
+Heap Sort:      dur1 = 20.8983ms                        count = 8044342
+Merge sort:     dur1 = 40.3467ms                        count = 7166599
+Quick sort:     dur1 = 11.3329ms                        count = 4019869
+Counting sort:  dur1 = 1.5556ms                 count = 465539
+Radix sort:     dur1 = 7.2768ms                 count = 1700070
+Flash sort:     dur1 = 2.5597ms                 count = 897368
+
+                         Size: 300000
+Selection sort:         dur1 = 92759.2ms                        count = 90000900003
+Insertion sort:         dur1 = 65423.9ms                        count = 45048682532
+Bubble sort:    dur1 = 310110ms                 count = 90000349000
+Shaker sort:    dur1 = 295218ms                 count = 90213524823
+Shell sort:     dur1 = 94.3098ms                        count = 34481005
+Heap Sort:      dur1 = 107.422ms                        count = 26485848
+Merge sort:     dur1 = 199.579ms                        count = 23382709
+Quick sort:     dur1 = 41.6879ms                        count = 12696525
+Counting sort:  dur1 = 6.3352ms                 count = 1265539
+Radix sort:     dur1 = 39.8043ms                        count = 5100070
+Flash sort:     dur1 = 13.2058ms                        count = 2809428
+
+                         Size: 500000
+Selection sort:         dur1 = 228019ms                 count = 250001500003
+Insertion sort:         dur1 = 151693ms                 count = 125058884449
+Bubble sort:    dur1 = 599604ms                 count = 250000248312
+Shaker sort:    dur1 = 507364ms                 count = 250237874882
+Shell sort:     dur1 = 116.564ms                        count = 63950923
+Heap Sort:      dur1 = 121.511ms                        count = 45969593
+Merge sort:     dur1 = 195.739ms                        count = 40382877
+Quick sort:     dur1 = 57.4078ms                        count = 21171990
+Counting sort:  dur1 = 4.874ms                  count = 2065539
+Radix sort:     dur1 = 37.4911ms                        count = 8500070
+Flash sort:     dur1 = 19.9816ms                        count = 4479288
+                 --------SORTED_DATA---------
+
+                         Size: 10000
+Selection sort:         dur1 = 85.4356ms                        count = 100030003
+Insertion sort:         dur1 = 0.0285ms                 count = 29998
+Bubble sort:    dur1 = 0.0458ms                 count = 20001
+Shaker sort:    dur1 = 0.0336ms                 count = 40000
+Shell sort:     dur1 = 0.4595ms                 count = 360042
+Heap Sort:      dur1 = 1.2865ms                 count = 670333
+Merge sort:     dur1 = 3.0721ms                 count = 475242
+Quick sort:     dur1 = 0.3063ms                 count = 233607
+Counting sort:  dur1 = 0.1534ms                 count = 60003
+Radix sort:     dur1 = 0.6221ms                 count = 140056
+Flash sort:     dur1 = 0.2317ms                 count = 127192
+
+                         Size: 30000
+Selection sort:         dur1 = 776.195ms                        count = 900090003
+Insertion sort:         dur1 = 0.0845ms                 count = 89998
+Bubble sort:    dur1 = 0.05ms                   count = 60001
+Shaker sort:    dur1 = 0.1896ms                 count = 120000
+Shell sort:     dur1 = 1.1804ms                 count = 1170050
+Heap Sort:      dur1 = 4.4073ms                 count = 2236652
+Merge sort:     dur1 = 10.7319ms                        count = 1559914
+Quick sort:     dur1 = 1.4672ms                 count = 747223
+Counting sort:  dur1 = 0.4766ms                 count = 180003
+Radix sort:     dur1 = 2.1184ms                 count = 510070
+Flash sort:     dur1 = 0.8464ms                 count = 381592
+
+                         Size: 50000
+Selection sort:         dur1 = 2142.04ms                        count = 2500150003
+Insertion sort:         dur1 = 0.1461ms                 count = 149998
+Bubble sort:    dur1 = 0.0859ms                 count = 100001
+Shaker sort:    dur1 = 0.1808ms                 count = 200000
+Shell sort:     dur1 = 2.1112ms                 count = 2100049
+Heap Sort:      dur1 = 8.2554ms                 count = 3925355
+Merge sort:     dur1 = 14.6398ms                        count = 2722826
+Quick sort:     dur1 = 1.8176ms                 count = 1284455
+Counting sort:  dur1 = 0.8049ms                 count = 300003
+Radix sort:     dur1 = 3.7019ms                 count = 850070
+Flash sort:     dur1 = 1.2767ms                 count = 635992
+
+                         Size: 100000
+Selection sort:         dur1 = 8575.76ms                        count = 10000300003
+Insertion sort:         dur1 = 0.3379ms                 count = 299998
+Bubble sort:    dur1 = 0.1769ms                 count = 200001
+Shaker sort:    dur1 = 0.4652ms                 count = 400000
+Shell sort:     dur1 = 4.4442ms                 count = 4500051
+Heap Sort:      dur1 = 16.4896ms                        count = 8365084
+Merge sort:     dur1 = 30.319ms                 count = 5745658
+Quick sort:     dur1 = 4.282ms                  count = 2668919
+Counting sort:  dur1 = 1.6346ms                 count = 600003
+Radix sort:     dur1 = 8.9105ms                 count = 1700070
+Flash sort:     dur1 = 2.3781ms                 count = 1271992
+
+                         Size: 300000
+Selection sort:         dur1 = 77116.5ms                        count = 90000900003
+Insertion sort:         dur1 = 0.8678ms                 count = 899998
+Bubble sort:    dur1 = 0.485ms                  count = 600001
+Shaker sort:    dur1 = 1.0125ms                 count = 1200000
+Shell sort:     dur1 = 18.5674ms                        count = 15300061
+Heap Sort:      dur1 = 53.8689ms                        count = 27413234
+Merge sort:     dur1 = 92.8859ms                        count = 18645946
+Quick sort:     dur1 = 11.165ms                 count = 8475703
+Counting sort:  dur1 = 4.6961ms                 count = 1800003
+Radix sort:     dur1 = 26.9452ms                        count = 6000084
+Flash sort:     dur1 = 7.287ms                  count = 3815992
+
+                         Size: 500000
+Selection sort:         dur1 = 214017ms                 count = 250001500003
+Insertion sort:         dur1 = 1.3639ms                 count = 1499998
+Bubble sort:    dur1 = 0.8093ms                 count = 1000001
+Shaker sort:    dur1 = 1.6748ms                 count = 2000000
+Shell sort:     dur1 = 25.481ms                 count = 25500058
+Heap Sort:      dur1 = 88.0972ms                        count = 47404890
+Merge sort:     dur1 = 153.067ms                        count = 32017850
+Quick sort:     dur1 = 18.912ms                 count = 14475703
+Counting sort:  dur1 = 7.1266ms                 count = 3000003
+Radix sort:     dur1 = 44.5611ms                        count = 10000084
+Flash sort:     dur1 = 11.8126ms                        count = 6359992
+                 --------REVERSE_DATA---------
+
+                         Size: 10000
+Selection sort:         dur1 = 87.1047ms                        count = 100030003
+Insertion sort:         dur1 = 102.692ms                        count = 100009999
+Bubble sort:    dur1 = 176.685ms                        count = 100019998
+Shaker sort:    dur1 = 273.185ms                        count = 200035000
+Shell sort:     dur1 = 0.5264ms                 count = 475175
+Heap Sort:      dur1 = 1.2065ms                 count = 606775
+Merge sort:     dur1 = 2.8297ms                 count = 476441
+Quick sort:     dur1 = 0.3589ms                 count = 248618
+Counting sort:  dur1 = 0.144ms                  count = 60003
+Radix sort:     dur1 = 0.5573ms                 count = 140056
+Flash sort:     dur1 = 0.2204ms                 count = 110701
+
+                         Size: 30000
+Selection sort:         dur1 = 787.46ms                 count = 900090003
+Insertion sort:         dur1 = 947.21ms                 count = 900029999
+Bubble sort:    dur1 = 1640.42ms                        count = 900059998
+Shaker sort:    dur1 = 2474.93ms                        count = 1800105000
+Shell sort:     dur1 = 1.7551ms                 count = 1554051
+Heap Sort:      dur1 = 4.2555ms                 count = 2063328
+Merge sort:     dur1 = 8.7286ms                 count = 1573465
+Quick sort:     dur1 = 1.0671ms                 count = 792234
+Counting sort:  dur1 = 0.4448ms                 count = 180003
+Radix sort:     dur1 = 2.0627ms                 count = 510070
+Flash sort:     dur1 = 0.7641ms                 count = 332101
+
+                         Size: 50000
+Selection sort:         dur1 = 2230.2ms                 count = 2500150003
+Insertion sort:         dur1 = 2721.59ms                        count = 2500049999
+Bubble sort:    dur1 = 4547.02ms                        count = 2500099998
+Shaker sort:    dur1 = 6929.18ms                        count = 5000175000
+Shell sort:     dur1 = 3.3464ms                 count = 2844628
+Heap Sort:      dur1 = 7.3034ms                 count = 3612728
+Merge sort:     dur1 = 16.4556ms                        count = 2733945
+Quick sort:     dur1 = 1.9158ms                 count = 1359466
+Counting sort:  dur1 = 0.8514ms                 count = 300003
+Radix sort:     dur1 = 3.5896ms                 count = 850070
+Flash sort:     dur1 = 1.1821ms                 count = 553501
+
+                         Size: 100000
+Selection sort:         dur1 = 9279.49ms                        count = 10000300003
+Insertion sort:         dur1 = 11069.6ms                        count = 10000099999
+Bubble sort:    dur1 = 18153.9ms                        count = 10000199998
+Shaker sort:    dur1 = 27519.9ms                        count = 20000350000
+Shell sort:     dur1 = 7.0055ms                 count = 6089190
+Heap Sort:      dur1 = 16.1797ms                        count = 7718947
+Merge sort:     dur1 = 29.7507ms                        count = 5767897
+Quick sort:     dur1 = 4.0286ms                 count = 2818930
+Counting sort:  dur1 = 1.4032ms                 count = 600003
+Radix sort:     dur1 = 6.8921ms                 count = 1700070
+Flash sort:     dur1 = 2.22ms                   count = 1107001
+
+                         Size: 300000
+Selection sort:         dur1 = 83906.1ms                        count = 90000900003
+Insertion sort:         dur1 = 102213ms                 count = 90000299999
+Bubble sort:    dur1 = 163629ms                 count = 90000599998
+Shaker sort:    dur1 = 371905ms                 count = 180001050000
+Shell sort:     dur1 = 40.8792ms                        count = 20001852
+Heap Sort:      dur1 = 90.0451ms                        count = 25569383
+Merge sort:     dur1 = 172.115ms                        count = 18708313
+Quick sort:     dur1 = 20.1892ms                        count = 8925714
+Counting sort:  dur1 = 9.1247ms                 count = 1800003
+Radix sort:     dur1 = 56.534ms                 count = 6000084
+Flash sort:     dur1 = 9.0409ms                 count = 3321001
+
+                         Size: 500000
+Selection sort:         dur1 = 302468ms                 count = 250001500003
+Insertion sort:         dur1 = 299514ms                 count = 250000499999
+Bubble sort:    dur1 = 470229ms                 count = 250000999998
+Shaker sort:    dur1 = 870353ms                 count = 500001750000
+Shell sort:     dur1 = 79.2743ms                        count = 33857581
+Heap Sort:      dur1 = 171.437ms                        count = 44483352
+Merge sort:     dur1 = 296.883ms                        count = 32336409
+Quick sort:     dur1 = 42.0074ms                        count = 15225714
+Counting sort:  dur1 = 15.3776ms                        count = 3000003
+Radix sort:     dur1 = 91.2663ms                        count = 10000084
+Flash sort:     dur1 = 15.4854ms                        count = 5535001
+                 --------NSORTED_DATA---------
+
+                         Size: 10000
+Selection sort:         dur1 = 168.557ms                        count = 100030003
+Insertion sort:         dur1 = 0.3663ms                 count = 188546
+Bubble sort:    dur1 = 201.337ms                        count = 98332600
+Shaker sort:    dur1 = 0.8443ms                 count = 319993
+Shell sort:     dur1 = 0.8119ms                 count = 412721
+Heap Sort:      dur1 = 3.3829ms                 count = 669929
+Merge sort:     dur1 = 5.7202ms                 count = 507466
+Quick sort:     dur1 = 0.5061ms                 count = 235641
+Counting sort:  dur1 = 0.5653ms                 count = 60003
+Radix sort:     dur1 = 1.6169ms                 count = 140056
+Flash sort:     dur1 = 0.3107ms                 count = 127164
+
+                         Size: 30000
+Selection sort:         dur1 = 1615.87ms                        count = 900090003
+Insertion sort:         dur1 = 1.157ms                  count = 623694
+Bubble sort:    dur1 = 1802.06ms                        count = 898372600
+Shaker sort:    dur1 = 2.3616ms                 count = 959993
+Shell sort:     dur1 = 3.1387ms                 count = 1333968
+Heap Sort:      dur1 = 7.4083ms                 count = 2236544
+Merge sort:     dur1 = 18.2869ms                        count = 1677684
+Quick sort:     dur1 = 1.7936ms                 count = 759597
+Counting sort:  dur1 = 0.8418ms                 count = 180003
+Radix sort:     dur1 = 4.5414ms                 count = 510070
+Flash sort:     dur1 = 0.8865ms                 count = 381568
+
+                         Size: 50000
+Selection sort:         dur1 = 4470.04ms                        count = 2500150003
+Insertion sort:         dur1 = 1.0637ms                 count = 632250
+Bubble sort:    dur1 = 3351.98ms                        count = 1643718305
+Shaker sort:    dur1 = 4.0059ms                 count = 1599993
+Shell sort:     dur1 = 4.4867ms                 count = 2279600
+Heap Sort:      dur1 = 13.8694ms                        count = 3925138
+Merge sort:     dur1 = 29.0129ms                        count = 2821340
+Quick sort:     dur1 = 2.7255ms                 count = 1299280
+Counting sort:  dur1 = 1.4561ms                 count = 300003
+Radix sort:     dur1 = 6.6465ms                 count = 850070
+Flash sort:     dur1 = 1.4582ms                 count = 635964
+
+                         Size: 100000
+Selection sort:         dur1 = 17745.1ms                        count = 10000300003
+Insertion sort:         dur1 = 1.1714ms                 count = 694682
+Bubble sort:    dur1 = 7280.88ms                        count = 3564309825
+Shaker sort:    dur1 = 7.5176ms                 count = 2799994
+Shell sort:     dur1 = 9.5463ms                 count = 4672313
+Heap Sort:      dur1 = 26.8403ms                        count = 8364772
+Merge sort:     dur1 = 59.4037ms                        count = 5850936
+Quick sort:     dur1 = 6.1581ms                 count = 2684159
+Counting sort:  dur1 = 3.9407ms                 count = 600003
+Radix sort:     dur1 = 17.6917ms                        count = 1700070
+Flash sort:     dur1 = 3.3708ms                 count = 1271964
+
+                         Size: 300000
+Selection sort:         dur1 = 134723ms                 count = 90000900003
+Insertion sort:         dur1 = 2.28ms                   count = 1249230
+Bubble sort:    dur1 = 19913.5ms                        count = 11235054897
+Shaker sort:    dur1 = 8.6251ms                 count = 8399994
+Shell sort:     dur1 = 28.3349ms                        count = 15430770
+Heap Sort:      dur1 = 84.0732ms                        count = 27413259
+Merge sort:     dur1 = 165.829ms                        count = 18751832
+Quick sort:     dur1 = 18.2508ms                        count = 8491737
+Counting sort:  dur1 = 8.2402ms                 count = 1800003
+Radix sort:     dur1 = 41.3408ms                        count = 6000084
+Flash sort:     dur1 = 9.5144ms                 count = 3815968
+
+                         Size: 500000
+Selection sort:         dur1 = 377527ms                 count = 250001500003
+Insertion sort:         dur1 = 2.3052ms                 count = 1995766
+Bubble sort:    dur1 = 30289.2ms                        count = 23569680897
+Shaker sort:    dur1 = 29.9491ms                        count = 17999992
+Shell sort:     dur1 = 50.0407ms                        count = 25665595
+Heap Sort:      dur1 = 144.181ms                        count = 47404770
+Merge sort:     dur1 = 276.28ms                 count = 32119423
+Quick sort:     dur1 = 31.2409ms                        count = 14511636
+Counting sort:  dur1 = 14.22ms                  count = 3000003
+Radix sort:     dur1 = 80.9729ms                        count = 10000084
+Flash sort:     dur1 = 16.6182ms                        count = 6359962
