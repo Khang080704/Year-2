@@ -1,0 +1,56 @@
+.data 
+	tb1: .asciiz "Nhap a: "
+	tb2: .asciiz "Nhap b: "
+	tb3: .asciiz "a > b" 
+	tb4: .asciiz "a < b" 
+	tb5: .asciiz "a = b"
+	numa: .word 0
+	numb: .word 0
+.text 
+	#xuat tb1
+	li $v0, 4
+	la $a0,tb1
+	syscall 
+
+	#nhap so nguyen 
+	li $v0,5	
+	syscall 
+
+	#luu vao num a
+	sw $v0,numa
+
+	#xuat tb2
+	li $v0, 4
+	la $a0,tb2
+	syscall 
+
+	#nhap so nguyen 
+	li $v0,5	
+	syscall 
+
+	#luu vao num b
+	sw $v0,numb
+
+	#load a vao s0, b vao s1
+	lw $s0,numa
+	lw $s1,numb
+
+	blt $s0,$s1,nhohon
+	beq $s0,$s1,bangnhau
+	#lon hon
+	li $v0,4
+	la $a0,tb3
+	syscall 
+	j KetThuc
+nhohon:
+	li $v0,4
+	la $a0,tb4
+	syscall 
+
+	j KetThuc
+
+bangnhau:
+	li $v0,4
+	la $a0,tb5
+	syscall 
+KetThuc:

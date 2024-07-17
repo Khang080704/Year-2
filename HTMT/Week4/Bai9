@@ -1,0 +1,50 @@
+.data
+    tb1: .asciiz "Nhap vao mot chuoi: "
+    tb2: .asciiz "Chuoi nguoc la: "
+    str: .space 30
+.text
+    # In tb1
+    li $v0, 4
+    la $a0, tb1
+    syscall
+
+    # Nhap chuoi
+    li $v0, 8       
+    syscall
+
+    # Luu $v0 vao chuoi
+    sw $v0,str
+
+    # Load chuoi vao $s0
+    lw $s0,str
+
+    # In tb2
+    li $v0, 4
+    la $a0, tb2
+    syscall
+
+    # Dao nguoc chuoi
+    li $t0, 0          
+    la $t1, str       
+count_length:
+    lb $t2, ($t1)   
+    beqz $t2, print_reverse
+    addi $t0, $t0, 1  
+    addi $t1, $t1, 1   
+    j count_length
+
+print_reverse:
+    sub $t1, $t1, 1     
+print_loop:
+    beq $t0, $zero, exit_print  
+    lb $a0, ($t1)      
+    li $v0, 11       
+    syscall
+    subi $t0, $t0, 1  
+    subi $t1, $t1, 1    
+    j print_loop
+
+exit_print:
+    # Ket thuc
+    li $v0, 10
+    syscall

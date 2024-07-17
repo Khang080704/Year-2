@@ -1,0 +1,247 @@
+.data 
+    tb1: .asciiz "1. Nhap n: "
+    tb2: .asciiz "a["
+    tb3: .asciiz "]: "
+    tb4: .asciiz "2. Mang vua nhap la: "
+    tb5: .asciiz "\n3. Cac so nguyen to trong mang la: "
+    tb6: .asciiz "\n4. Gia tri lon nhat trong mang la: "
+    tb7: .asciiz "\n5. Trung binh cua mang la: "
+    n: .word 0
+    arr: .space 100
+
+.text 
+    # Nh?p m?ng 1 chi?u
+    #xuat tb1
+    li $v0, 4   
+    la $a0, tb1
+    syscall 
+
+    #nhap so nguyen
+    li $v0, 5
+    syscall 
+
+    #luu v0 vao n
+    sw $v0, n
+
+    #load n vao $s0
+    lw $s0, n
+
+    #Load dia chi arr vào $s1
+    la $s1, arr
+
+    # khoi tao vong lap nhap mang
+    li $t0, 0 # i = 0
+Nhap.Lap:
+    #xuat tb2
+    li $v0, 4
+    la $a0, tb2
+    syscall 
+
+    #xuat i
+    li $v0, 1
+    move $a0, $t0
+    syscall 
+    
+    #xuat tb3
+    li $v0, 4
+    la $a0, tb3
+    syscall 
+
+    #Nhap so nguyên
+    li $v0, 5
+    syscall 
+
+    #L?u v0 vào a[i]
+    sw $v0, ($s1)
+
+    #tang dia chi mang
+    addi $s1, $s1, 4
+
+    #tang i
+    addi $t0, $t0, 1
+
+    #nei i<n thi lap
+    blt $t0, $s0, Nhap.Lap
+
+    #xuat tb4
+    li $v0, 4
+    la $a0, tb4
+    syscall 
+
+    #Load dia chi mang vao $s1
+    la $s1, arr
+
+    # khoi tao vong lap xuat mang
+    li $t0, 0 # i = 0
+Xuat.Lap:
+    #xuat a[i]
+    li $v0, 1
+    lw $a0, ($s1)   
+    syscall 
+
+    #xuat khoang trang
+    li $v0, 11
+    li $a0, ' '
+    syscall
+    
+    #t?ng ?ia chi mang
+    addi $s1, $s1, 4
+
+    #tang i
+    addi $t0, $t0, 1
+
+    #neu i<n thi lap
+    blt $t0, $s0, Xuat.Lap
+
+# Tinh trung binh mang
+TinhTrungBinh:
+   # Load dia chi mang vao $s1
+   la $s1, arr
+   # Khoi tao bien tong la 0
+   li $t6, 0
+   # Khoi tao bien dem la 0
+   li $t0, 0
+
+# Lap qua tung phan tu cua mang
+TinhTong.Lap:
+    # Load phan tu cua mang vao $t1
+    lw $t1, ($s1)
+    # Cong vao bien tong
+    add $t6, $t6, $t1
+    # Tang bien dem
+    addi $t0, $t0, 1
+    # tang dia chi mang
+    addi $s1, $s1, 4
+    # kiem tra neu da duyet het mang thi ket thuc vong lap
+    blt $t0, $s0, TinhTong.Lap
+
+    # chia tong cho so phan tu
+    div $t6, $s0
+    # luu ket qua vao $t7
+    mflo $t7
+
+    # xuat tb7
+    li $v0, 4
+    la $a0, tb7
+    syscall
+
+    # xuat ket qua
+    li $v0, 1
+    move $a0, $t7
+    syscall
+
+
+    # Li?t kê các s? nguyên t? trong m?ng
+# Kh?i t?o vòng l?p ?? duy?t qua t?ng ph?n t? trong m?ng
+li $t0, 0 # i = 0
+li $t8, 2 # Bi?n ??m s? ??c, ban ??u là 2
+
+LietKeNguyenTo:
+    # Load giá tr? c?a ph?n t? th? i t? m?ng vào $t1
+    lw $t1, 0($s1)
+
+    # Kh?i t?o bi?n ??m s? ??c c?a ph?n t?
+    li $t8, 0
+
+    # Kh?i t?o bi?n l?u tr?ng thái s? nguyên t?
+    li $t9, 1 # Gi? s? ph?n t? là s? nguyên t?
+
+    # Kh?i t?o vòng l?p ?? ki?m tra s? ??c
+    li $t2, 2 # S? ??c b?t ??u t? 2
+
+    Loop:
+        beq $t2, $t1, KetThucUoc      # N?u ?ã ki?m tra h?t t?t c? các ??c
+        div $t1, $t2                  # Chia $t1 cho $t2
+        mfhi $t4                      # L?u ph?n d? vào $t4
+        beq $t4, $zero, CoUoc         # N?u ph?n d? là 0, t?c là $t2 là ??c c?a $t1
+        addi $t2, $t2, 1              # T?ng $t2 lên ?? ki?m tra ??c ti?p theo
+        j Loop                        # L?p l?i vòng l?p
+
+    CoUoc:
+        addi $t8, $t8, 1              # T?ng s? l??ng ??c lên 1
+        j Loop                        # L?p l?i vòng l?p
+
+    KetThucUoc:
+        # Ki?m tra n?u s? l??ng ??c không ph?i là 1, có ngh?a là không ph?i là s? nguyên t?
+        bne $t8, $zero, KhongNguyenTo # N?u có ??c khác 1, t?c là không ph?i s? nguyên t?
+
+        # Xu?t ph?n t? là s? nguyên t?
+        li $v0, 1
+        move $a0, $t1
+        syscall
+
+        # Xu?t kho?ng tr?ng
+        li $v0, 11
+        li $a0, ' '
+        syscall
+
+    KhongNguyenTo:
+        # T?ng bi?n ??m v? trí m?ng
+        addi $t0, $t0, 1
+
+        # T?ng ??a ch? m?ng ?? duy?t ti?p
+        addi $s1, $s1, 4
+
+        # Ki?m tra n?u ?ã duy?t qua h?t m?ng thì k?t thúc vòng l?p
+        bge $t0, $s0, KetThucLietKeNguyenTo
+        j LietKeNguyenTo
+
+    KetThucLietKeNguyenTo:
+ # In ra d?u xu?ng dòng cho ti?n
+    li $v0, 4
+    la $a0, tb7
+    syscall
+
+
+
+# Tìm giá tr? l?n nh?t trong m?ng
+# Load ??a ch? m?ng vào $s1
+la $s1, arr
+# Kh?i t?o giá tr? l?n nh?t là ph?n t? ??u tiên c?a m?ng
+lw $t5, 0($s1)  # Giá tr? l?n nh?t là ph?n t? ??u tiên
+li $t0, 1 # B?t ??u t? ph?n t? th? 2
+TimMax.Lap:
+    lw $t1, ($s1)
+
+    # So sánh v?i giá tr? l?n nh?t hi?n t?i
+    bgt $t1, $t5, CapNhatMax
+
+    # T?ng ??a ch? m?ng
+    addi $s1, $s1, 4
+
+    # T?ng bi?n ??m
+    addi $t0, $t0, 1
+
+    # N?u ch?a duy?t h?t m?ng thì l?p l?i
+    blt $t0, $s0, TimMax.Lap
+
+    # Xu?t giá tr? l?n nh?t
+    li $v0, 1
+    move $a0, $t5
+    syscall
+    j TinhTrungBinh
+
+CapNhatMax:
+    # C?p nh?t giá tr? l?n nh?t
+    move $t5, $t1
+
+    # T?ng ??a ch? m?ng
+    addi $s1, $s1, 4
+
+    # T?ng bi?n ??m
+    addi $t0, $t0, 1
+
+    # N?u ch?a duy?t h?t m?ng thì l?p l?i
+    blt $t0, $s0, TimMax.Lap
+ # Xu?t giá tr? l?n nh?t trong m?ng
+    li $v0, 4
+    la $a0, tb6
+    syscall
+
+    li $v0, 1
+    move $a0, $t5
+
+
+    # ket thuc
+    li $v0, 10
+    syscall

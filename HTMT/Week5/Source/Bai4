@@ -1,0 +1,73 @@
+.data
+tb1: .asciiz "la so doi xung\n"
+tb2: .asciiz "khong la doi xung\n"
+fmt: .asciiz "Nhap so: "
+
+.text
+.globl main
+
+main:
+    # Nhap n
+    li $v0, 4
+    la $a0, fmt
+    syscall
+    
+    li $v0, 5
+    syscall
+    move $t0, $v0  # Luu gia tri nhap vao $t0
+    
+    # Goi ham _KTDX
+    move $a0, $t0
+    jal _KTDX
+    move $s0, $v0  # luu ket qua tra ve vao $s0
+    
+    # So sanh ket qua va xuat tb tuong ung
+    beq $s0, 1, LaDX
+
+    # xuat tb2
+    li $v0, 4
+    la $a0, tb2
+    syscall
+    j KetThuc
+
+LaDX:
+    # xuat tb1
+    li $v0, 4
+    la $a0, tb1
+    syscall
+
+KetThuc:
+    li $v0, 10
+    syscall
+_KTDX:
+    # Luu cac thanh ghi va khoi tao cac bien
+    addi $sp, $sp, -16
+    sw $ra, 0($sp)
+    sw $s0, 4($sp)
+    sw $s1, 8($sp)
+    move $s0, $a0
+    li $s1, 0  # tao mot bien luu tru so dao nguoc
+
+_KTDX_Lap:
+    move $t2, $s0  # luu n vao $t2
+    li $t3, 10
+    div $t2, $t3  # t2 = n / 10, t3 = n % 10
+    mfhi $t2  # t2 = n % 10 (luu lai phan du)
+    mflo $s0  # s0 = n / 10
+    mul $t4, $s1, $t3  # t4 = so dao nguoc * 10
+    add $s1, $t4, $t2  # so dao nguoc = so dao nguoc * 10 + t3 (ph?n d?)
+    bnez $s0, _KTDX_Lap  # kiem tra n != 0
+    
+    # So sanh so dao nguoc voi so ban dau
+    beq $s1, $a0, _KTDX_ret1
+    li $v0, 0
+    j _KTDX_KT
+_KTDX_ret1:
+    li $v0, 1
+
+_KTDX_KT:
+    lw $ra, 0($sp)
+    lw $s0, 4($sp)
+    lw $s1, 8($sp)
+    addi $sp, $sp, 16
+    jr $ra

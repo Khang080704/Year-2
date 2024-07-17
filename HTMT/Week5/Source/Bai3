@@ -1,0 +1,68 @@
+.data
+    prompt:     .asciiz "Nhap so nguyen duong n "
+    chph:       .asciiz " La so chinh phuong"
+    notchph:    .asciiz " khong phai so chinh phuong"
+
+.text
+    # Hàm main
+    .globl main
+main:
+    # In ra thông báo
+    li $v0, 4               # s? d?ng syscall 4 ?? in chu?i
+    la $a0, prompt          # n?p ??a ch? c?a chu?i vào $a0
+    syscall                 # g?i syscall ?? in chu?i
+
+    # Nh?p giá tr? nguyên n
+    li $v0, 5               # s? d?ng syscall 5 ?? ??c s? nguyên
+    syscall                 # g?i syscall ?? ??c s? nguyên
+    move $s0, $v0           # l?u giá tr? c?a n vào thanh ghi $s0
+
+    # Ki?m tra n có ph?i là s? chính ph??ng hay không
+    jal perfectSquare       # g?i hàm perfectSquare
+    beq $v0, 1, printChPh   # n?u là s? chính ph??ng, nh?y t?i printChPh
+    j printNotChPh          # n?u không ph?i s? chính ph??ng, nh?y t?i printNotChPh
+
+printChPh:
+    # In ra k?t qu? n là s? chính ph??ng
+    li $v0, 1               # s? d?ng syscall 1 ?? in s? nguyên
+    move $a0, $s0           # n?p giá tr? c?a n vào $a0
+    syscall                 # g?i syscall ?? in s? nguyên
+    li $v0, 4               # s? d?ng syscall 4 ?? in chu?i
+    la $a0, chph            # n?p ??a ch? c?a chu?i vào $a0
+    syscall                 # g?i syscall ?? in chu?i
+    j exit                  # nh?y t?i exit
+
+printNotChPh:
+    # In ra k?t qu? n không ph?i là s? chính ph??ng
+    li $v0, 1               # s? d?ng syscall 1 ?? in s? nguyên
+    move $a0, $s0           # n?p giá tr? c?a n vào $a0
+    syscall                 # g?i syscall ?? in s? nguyên
+    li $v0, 4               # s? d?ng syscall 4 ?? in chu?i
+    la $a0, notchph         # n?p ??a ch? c?a chu?i vào $a0
+    syscall                 # g?i syscall ?? in chu?i
+    j exit                  # nh?y t?i exit
+
+# Hàm ki?m tra n có ph?i là s? chính ph??ng hay không
+perfectSquare:
+    move $t0, $s0           # l?u giá tr? c?a n vào thanh ghi $t0
+    li $t1, 0               # kh?i t?o bi?n ??m i = 0
+
+checkLoop:
+    mul $t2, $t1, $t1       # tính bình ph??ng c?a i
+    bgt $t2, $t0, notPerfectSquare # n?u bình ph??ng l?n h?n n, thoát kh?i vòng l?p
+    beq $t2, $t0, isPerfectSquare # n?u bình ph??ng b?ng n, là s? chính ph??ng
+
+    addi $t1, $t1, 1        # t?ng i lên 1
+    j checkLoop             # ti?p t?c vòng l?p
+
+isPerfectSquare:
+    li $v0, 1               # tr? v? 1 n?u là s? chính ph??ng
+    jr $ra
+
+notPerfectSquare:
+    li $v0, 0               # tr? v? 0 n?u không ph?i s? chính ph??ng
+    jr $ra
+
+exit:
+    li $v0, 10              # s? d?ng syscall 10 ?? thoát ch??ng trình
+    syscall

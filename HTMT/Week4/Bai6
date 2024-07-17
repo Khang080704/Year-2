@@ -1,0 +1,71 @@
+.data
+    tb1: .asciiz "Nhap vao mot ki tu: "
+    tb2: .asciiz "\nKi tu vua nhap: "
+    tb3: .asciiz " la so\n"
+    tb4: .asciiz " la chu thuong\n"
+    tb5: .asciiz " la chu hoa\n"
+    kitu: .space 1
+
+.text
+    # In tb1
+    li $v0, 4
+    la $a0, tb1
+    syscall
+
+    # Nhap ki tu
+    li $v0, 12 
+    syscall
+
+    # Luu $v0 vao ki tu
+    sw $v0,kitu
+
+    # Load kitu vao $s0
+    lw $s0,kitu
+
+    # In tb2
+    li $v0, 4
+    la $a0, tb2
+    syscall
+
+   # In ki tu vua nhap
+    li $v0,11
+    lw $a0, kitu
+    syscall
+    
+    # Kiem tra ki tu
+    li $t0, 48      # '0'
+    li $t1, 57      # '9'
+    li $t2, 97      # 'a'
+    li $t3, 122     # 'z'
+    li $t4, 65      # 'A'
+    li $t5, 90      # 'Z'
+
+
+    # Neu la chu thuong
+    bge $a0, $t2, print_lowercase
+    # Neu la chu hoa
+    bge $a0, $t4, print_uppercase
+    # Neu la so
+    bge $a0, $t0, print_digit
+
+print_digit:
+    li $v0, 4
+    la $a0, tb3
+    syscall
+    j exit
+
+print_lowercase:
+    li $v0, 4
+    la $a0, tb4
+    syscall
+    j exit
+
+print_uppercase:
+    li $v0, 4
+    la $a0, tb5
+    syscall
+
+exit:
+    # Ket thuc
+    li $v0, 10
+    syscall

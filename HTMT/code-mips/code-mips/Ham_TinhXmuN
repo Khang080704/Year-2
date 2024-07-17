@@ -1,0 +1,92 @@
+#Nh?p vào 2 s? x,n. Vi?t hàm tính X^n. 
+.data 
+	tb1: .asciiz "Nhap x: "
+	tb2: .asciiz "Nhap n: "
+	tb3: .asciiz "x^n = "
+	x: .word 0
+	n: .word 0
+	kq: .word 0
+.text 
+	#Xuat tb1
+	li $v0,4	
+	la $a0,tb1
+	syscall 
+	
+	#nhap so nguyen
+	li $v0,5
+	syscall 
+
+	#luu vao x
+	sw $v0,x
+
+	#Xuat tb2
+	li $v0,4	
+	la $a0,tb2
+	syscall 
+	
+	#nhap so nguyen
+	li $v0,5
+	syscall 
+
+	#luu vao n
+	sw $v0,n
+
+	#Truyen tham so
+	lw $a0,x
+	lw $a1,n
+
+	#goi ham
+	jal _TinhMu
+
+	#Luu $v0 vao kq
+	sw $v0,kq
+
+	#xuat tb3
+	li $v0,4
+	la $a0,tb3
+	syscall 
+
+	#xuat kq
+	li $v0,1
+	lw $a0,kq
+	syscall 
+
+	#ket thuc
+	li $v0,10
+	syscall 
+#===================================
+#Dau thu tuc
+_TinhMu:
+	#khai bao stack
+	addi $sp,$sp,-32
+	#backup cac thanh ghi
+	sw $ra,($sp)
+	sw $s0,4($sp)
+	sw $t0,8($sp)
+
+#Than thu tuc
+	#khoi tao vong lap
+	li $s0,1 #T = 1
+	li $t0,1 #i = 1
+_TinhMu.Lap:
+	#T = T*x
+	mult $s0,$a0 
+	mflo $s0
+
+	#i++
+	addi $t0,$t0,1
+	
+	#Neu i <=n thi Lap
+	ble $t0,$a1,_TinhMu.Lap
+
+	#Luu $s0 vao $v0 (tra ve)
+	move $v0,$s0
+#Cuoi thu tuc
+	#Restore cac thanh ghi
+	lw $ra,($sp)
+	lw $s0,4($sp)
+	lw $t0,8($sp)
+	#xoa stack
+	addi $sp,$sp,32
+	#Tra ve
+	jr $ra

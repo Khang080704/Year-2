@@ -1,0 +1,76 @@
+#Viet ham tinh tong 1 den n.
+.data 
+	tb1: .asciiz "Nhap n: "
+	tb2: .asciiz "Tong 1 den n la: "
+	n: .word 0
+	kq: .word 0
+
+.text 
+	#xuat tb1
+	li $v0,4
+	la $a0,tb1
+	syscall 
+
+	#nhap so nguyen
+	li $v0,5
+	syscall 
+
+	#luu v0 vao n
+	sw $v0,n
+
+	#truyen tham so
+	lw $a0,n
+
+	#goi ham _TinhTong
+	jal _TinhTong
+
+	#Luu ket qua tra ve $v0 vao kq
+	sw $v0,kq
+
+	#xuat tb2
+	li $v0,4
+	la $a0,tb2
+	syscall 
+
+	#xuat kq
+	li $v0,1
+	lw $a0,kq
+	syscall
+
+	#ket thuc 
+	li $v0,10
+	syscall 
+
+#=========== ham _TinhTong ==========
+#Dau thu tuc
+_TinhTong:
+	#khai bao stack
+	addi $sp,$sp,-32
+	#backup thanh ghi
+	sw $ra,($sp)
+	sw $s0,4($sp)
+	sw $t0,8($sp)
+
+#Than thu tuc
+	#khoi tao
+	li $s0,0 # s = 0
+	li $t0,1 # i = 1
+_TinhTong.Lap:
+	add $s0,$s0,$t0 # s = s + i
+	addi $t0,$t0,1 # i++
+	#Neu i <= n thi Lap
+	ble $t0,$a0,_TinhTong.Lap
+
+	#Luu tong $s0 vao $v0
+	move $v0,$s0
+#cuoi thu tuc
+	#restore thanh ghi
+	lw $ra,($sp)
+	lw $s0,4($sp)
+	lw $t0,8($sp)
+
+	#xoa stack
+	addi $sp,$sp,32
+
+	#quay ve
+	jr $ra

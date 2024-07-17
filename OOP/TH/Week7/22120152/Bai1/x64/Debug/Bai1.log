@@ -1,0 +1,10 @@
+﻿  Circle.cpp
+  ComplexShape.cpp
+  Rectangle.cpp
+  Shape.cpp
+  main.cpp
+F:\Dai hoc\Year 2\HK2\OOP\TH\Week7\22120152\Bai1\main.cpp(41,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+F:\Dai hoc\Year 2\HK2\OOP\TH\Week7\22120152\Bai1\main.cpp(46,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+F:\Dai hoc\Year 2\HK2\OOP\TH\Week7\22120152\Bai1\ComplexShape.cpp(45,1): warning C4715: 'ComplexShape::IsSelected': not all control paths return a value
+  Bai1.vcxproj -> F:\Dai hoc\Year 2\HK2\OOP\TH\Week7\22120152\x64\Debug\Bai1.exe

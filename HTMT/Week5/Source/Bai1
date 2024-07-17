@@ -1,0 +1,76 @@
+.data
+	prompt: .asciiz "Nhap so nguyen duong n: "
+	not_prime_msg: .asciiz "Khong phai so nguyen to"
+	prime_msg: .asciiz "La so nguyen to"
+	newline: .asciiz "\n"
+
+    
+.text
+    .globl main
+
+main:
+    # in thong bao
+    li $v0, 4
+    la $a0, prompt
+    syscall
+
+    # nhap n
+    li $v0, 5
+    syscall
+    move $t0, $v0 #luu n vao t0
+
+    # neu n nho hon 2 thi khong phai nguye nto
+    blez $t0, not_prime
+    
+    # n lon hon 2
+    li $t1, 2
+    beq $t0, $t1, prime
+
+    # neu n chia het cho 1 so bat ki tu 1 den sqrt(n)
+    li $t2, 2            # t2 = 2
+    li $t3, 0            # t3 = 0 (remainder)
+    li $t4, 1            # t4 = 1 (loop counter)
+    li $t6, 0            # t6 = 0 (flag for prime)
+    loop:
+
+        div $t0, $t2
+        mfhi $t3         
+
+
+        beq $t3, $zero, not_prime
+
+        addi $t2, $t2, 1
+
+        mul $t5, $t4, $t4
+
+        bge $t5, $t0, prime
+        # j = j + 1
+        addi $t4, $t4, 1
+        j loop
+
+prime:
+    # dat co la 1
+    li $t6, 1
+
+not_prime:
+    # In so nguyen to
+    beq $t6, $zero, not_prime_label
+    li $v0, 4
+    la $a0, prime_msg
+    syscall
+    j exit
+
+not_prime_label:
+    li $v0, 4
+    la $a0, not_prime_msg
+    syscall
+
+exit:
+    
+    li $v0, 4
+    la $a0, newline
+    syscall
+
+
+    li $v0, 10
+    syscall

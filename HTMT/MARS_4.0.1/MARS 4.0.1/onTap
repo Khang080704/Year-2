@@ -1,0 +1,67 @@
+.data
+	tb1: .asciiz "Nhap vao 1 ki tu: "
+	new_line: .asciiz "\n"
+	
+.text
+	#Xuat thong bao
+	li $v0, 4
+	la $a0, tb1
+	syscall
+	#nhap ki tu
+	li $v0, 12
+	syscall
+	move $t0, $v0
+	#xuat ki tu
+	li $v0, 11
+	move $a0, $t0
+	addi $a0, $a0, 32
+	syscall
+	
+	#xuat thong bao
+	#li $v0, 4
+	#la $a0, tb1
+#	syscall
+	
+	#nhap kí tu
+#	li $v0, 12
+#	syscall
+#	move $t0, $v0
+
+#	li $v0, 4
+#	la $a0, new_line
+#	syscall
+
+	#Xuat thong bao ki tu lien truoc
+#	li $v0, 4
+#	la $a0, tb2
+#	syscall
+#	#xuat ki tu
+	
+##	li $v0, 11
+#	move $a0, $t0
+#	addi $a0, $a0, -1
+#	syscall
+
+#	li $v0, 4
+#	la $a0, new_line
+#	syscall
+
+	#xuat thong bao
+#	li $v0, 4
+#	la $a0, tb3
+#	syscall
+
+	#xuat ki tu
+#	li $v0, 11
+#	move $a0, $t0
+#	addi $a0, $a0, 1
+#	syscall
+
+	
+	
+	
+
+	
+
+	
+	

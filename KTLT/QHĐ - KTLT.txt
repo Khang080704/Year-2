@@ -1,0 +1,177 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+//Mấy lần t gửi bai m hong có coi mấy nên hy vọng lần này m sẽ coi nhaaa
+
+int findMax(int a[], int n) {
+	int max = a[0];
+	int index_max = 0;
+	for (int i = 0; i < n; i++) {
+		if (max < a[i]) {
+			max = a[i];
+			index_max = i;
+		}
+	}
+	return index_max;
+}
+
+//Bai 303
+void longest_sub_array(int* a, int n) {
+	int dp[100]; // Mang chua do dai cac day con
+	vector<int> result;
+	for (int i = 0; i < n; i++) {
+		dp[i] = 1;
+	}
+	for (int i = 0; i < n; i++) {
+		if (a[i] <= 0) {
+			dp[i] = 0; // Tai vi tri co so am thi do dai bang 0
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		if (dp[i] != 0) {
+			for (int j = i + 1; j < n; j++) {
+				if (a[j] > 0) {
+					dp[j] = dp[j - 1] + 1; //Mo rong do dai day con them 1 don vi
+				}
+			}
+		}
+	}
+	int index_max = findMax(dp, n);
+	
+	for (int i = index_max - dp[index_max] + 1; i <= index_max; i++) {
+		result.push_back(a[i]); //Luu gia tri cua mang con dai nhat
+	}
+	cout << "Day con duong dai nhat: ";
+	for (int i = 0; i < result.size(); i++) {
+		cout << result[i] << " ";
+	}
+	cout << endl;
+	cout << "Do dai la: " << dp[index_max];
+}
+
+//Bai 304 - kho nhat trong 4 bai nen hen bua nao t giai thich chi tiet nhaa :D <3
+bool day_con_tong_bang_s(int* a, int n, int s) {
+	vector<int> dp(s + 1, 0);
+	dp[0] = 1;
+	
+	for (int i = 1; i <= n; i++) {
+		for (int j = s; j >= a[i]; j--) {
+			if (dp[j - a[i]] == 1) {
+				dp[j] = 1;
+			}
+		}
+	}
+
+	if (dp[s] == 1) {
+		return true;
+	}
+	return false;
+}
+
+void printSubArray(int* a, int n, int s) {
+	int index = 1;
+	if (s == 0) {
+		return;
+	}
+	else {
+		while (day_con_tong_bang_s(a, index, s) == false) {
+			index++;
+		}
+		cout << a[index] << " ";
+		printSubArray(a, n, s - a[index]);
+	}
+}
+
+//Bai 305 - tuong tu 303 nhung tinh toan voi gia tri thay vi do dai
+int Max(int* a, int n) { // Tim max
+	int max = a[0];
+	for (int i = 0; i < n; i++) {
+		if (max < a[i]) {
+			max = a[i];
+		}
+	}
+	return max;
+}
+
+void max_sum(int* a, int n) {
+	int dp[100];
+	for (int i = 0; i < n; i++) {
+		dp[i] = a[i];
+	}
+	for (int i = 0; i < n; i++) {
+		if (a[i] < 0) {
+			dp[i] = 0;
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		if (dp[i] != 0) {
+			for (int j = i + 1; j < n; j++) {
+				if (a[j] > 0) {
+					dp[j] = dp[j - 1] + a[j];
+				}
+			}
+		}
+	}
+	cout << Max(dp, n);
+}
+
+//Bai 306 - Thuat toan Kanade - google
+int Kadane(int* a, int n, int& index) {
+	int local_sum = 0;
+	int record = 0;
+	for (int i = 0; i < n; i++) {
+		local_sum += a[i];
+		if (local_sum < 0) {
+			local_sum = 0;
+		}
+		else {
+			if (local_sum > record) {
+				record = local_sum;
+				index = i;
+			}
+		}
+	}
+	return record;
+}
+
+void print_max_sum(int* a, int n) {
+	int index = 0;
+	int sum = Kadane(a, n, index);
+	int temp = sum;
+	cout << "Mang con lien tiep co tong lon nhat la: ";
+	while (temp > 0) {
+		cout << a[index] << " ";
+		temp = temp - a[index];
+		index--;
+	}
+	cout << endl;
+	cout << "Tong la: " << sum;
+}
+
+int main()
+{
+	int n;
+	cin >> n;
+	int* a = new int[n];
+	//Doan cmt duoi dung cho bai 304
+
+	/*a[0] = -1;
+	for (int i = 1; i <= n; i++) {
+		cin >> a[i];
+	}
+	int s; cin >> s;
+	if (day_con_tong_bang_s(a, n, s)) {
+		printSubArray(a, n, s);
+	}
+	else {
+		cout << "Khong ton tai day con";
+	}*/
+
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	//Goi ham
+	delete[] a;
+}

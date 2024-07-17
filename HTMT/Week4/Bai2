@@ -1,0 +1,42 @@
+.data
+    prompt: .asciiz "Nhap mot ky tu: "
+    prev_char_msg: .asciiz "Ky tu lien truoc: "
+    next_char_msg: .asciiz "Ky tu lien sau: "
+    new_line: .asciiz "\n"
+.text
+    # In thong bao
+    li $v0, 4
+    la $a0, prompt
+    syscall
+
+    # nhap ki tu 
+    li $v0, 12
+    syscall
+    move $t0, $v0 
+
+    # In ki tu lien truoc
+    li $v0, 4
+    la $a0, prev_char_msg
+    syscall
+
+    li $v0, 11
+    move $a0, $t0
+    addi $a0, $a0, -1 # Tru 1 de lay ki tu truoc
+    syscall
+
+    li $v0, 4
+    la $a0, new_line
+    syscall
+
+    # In ki tu lien sau
+    li $v0, 4
+    la $a0, next_char_msg
+    syscall
+
+    li $v0, 11
+    move $a0, $t0
+    addi $a0, $a0, 1 # Them 1 de lay ki tu sau
+    syscall
+
+    li $v0, 10
+    syscall

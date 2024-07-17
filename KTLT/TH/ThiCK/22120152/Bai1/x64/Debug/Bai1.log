@@ -1,0 +1,4 @@
+﻿  main.cpp
+F:\Dai hoc\Year 2\HK2\KTLT\TH\ThiCK\22120152\Bai1\main.cpp(41,1): warning C4715: 'createNode': not all control paths return a value
+F:\Dai hoc\Year 2\HK2\KTLT\TH\ThiCK\22120152\Bai1\main.cpp(99,1): warning C4715: 'SoSanhGheNgoi': not all control paths return a value
+  Bai1.vcxproj -> F:\Dai hoc\Year 2\HK2\KTLT\TH\ThiCK\22120152\x64\Debug\Bai1.exe

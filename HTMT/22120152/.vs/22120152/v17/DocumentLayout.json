@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\Dai hoc\\Year 2\\HK2\\HTMT\\22120152\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D11C7D-9C20-4D1C-9191-D543CC5D4145}|Bai1\\Bai1.vcxproj|F:\\Dai hoc\\Year 2\\HK2\\HTMT\\22120152\\Bai1\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E3D11C7D-9C20-4D1C-9191-D543CC5D4145}|Bai1\\Bai1.vcxproj|solutionrelative:Bai1\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FD3C759-792C-4B5D-8574-C020D4D17C36}|Bai2\\Bai2.vcxproj|F:\\Dai hoc\\Year 2\\HK2\\HTMT\\22120152\\Bai2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1FD3C759-792C-4B5D-8574-C020D4D17C36}|Bai2\\Bai2.vcxproj|solutionrelative:Bai2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main.cpp",
+              "DocumentMoniker": "F:\\Dai hoc\\Year 2\\HK2\\HTMT\\22120152\\Bai2\\main.cpp",
+              "RelativeDocumentMoniker": "Bai2\\main.cpp",
+              "ToolTip": "F:\\Dai hoc\\Year 2\\HK2\\HTMT\\22120152\\Bai2\\main.cpp",
+              "RelativeToolTip": "Bai2\\main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-29T14:24:45.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "F:\\Dai hoc\\Year 2\\HK2\\HTMT\\22120152\\Bai1\\main.cpp",
+              "RelativeDocumentMoniker": "Bai1\\main.cpp",
+              "ToolTip": "F:\\Dai hoc\\Year 2\\HK2\\HTMT\\22120152\\Bai1\\main.cpp",
+              "RelativeToolTip": "Bai1\\main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-29T14:24:30.68Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

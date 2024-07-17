@@ -1,0 +1,101 @@
+ .data 
+	tb1: .asciiz "Nhap a: "
+	tb2: .asciiz "Nhap b: "
+	tb3: .asciiz "\nTong la: "
+	tb4: .asciiz "\nHieu la: "
+	tb5: .asciiz "\nTich la: "
+	tb6: .asciiz "\nThuong la: "
+	numa: .word 1
+	numb: .word 1
+	kq: .word 1
+	
+.text
+	#xuat tb1
+	li $v0,4
+	la $a0,tb1
+	syscall 
+
+	#Nhap a
+	li $v0,5
+	syscall 
+	
+	#Luu vao a
+	sw $v0,numa
+
+	#xuat tb2
+	li $v0,4
+	la $a0,tb2
+	syscall 
+
+	#Nhap b
+	li $v0,5
+	syscall 
+	
+	#Luu vao b
+	sw $v0,numb
+
+	#Load a vao s0, b vao s1
+	lw $s0,numa
+	lw $s1,numb
+
+	#Tinh tong
+	add $s2,$s0,$s1
+	#luu vao kq
+	sw $s2,kq
+
+	#xuat tb3
+	li $v0,4
+	la $a0,tb3
+	syscall 
+
+	#xuat kq
+	li $v0,1
+	lw $a0,kq
+	syscall
+	
+	#Tinh hieu
+	sub $s2,$s0,$s1
+	#luu vao kq
+	sw $s2,kq
+
+	#xuat tb4
+	li $v0,4
+	la $a0,tb4
+	syscall 
+
+	#xuat kq
+	li $v0,1
+	lw $a0,kq
+	syscall
+
+	#Tinh tich
+	mult $s0,$s1 
+	mflo $s2
+	#luu vao kq
+	sw $s2,kq
+
+	#xuat tb5
+	li $v0,4
+	la $a0,tb5
+	syscall 
+
+	#xuat kq
+	li $v0,1
+	lw $a0,kq
+	syscall
+
+	#Tinh thuong
+	div $s0,$s1 
+	mflo $s2
+	#luu vao kq
+	sw $s2,kq
+
+	#xuat tb6
+	li $v0,4
+	la $a0,tb6
+	syscall 
+
+	#xuat kq
+	li $v0,1
+	lw $a0,kq
+	syscall

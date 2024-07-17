@@ -1,0 +1,348 @@
+//#include<iostream>
+//#include<cmath>
+//using namespace std;
+//
+//int number_count(int n) {
+//	if (n >= 0 && n <= 9) {
+//		return 1;
+//	}
+//	else {
+//		return 1 + number_count(n / 10);
+//	}
+//}
+//
+//bool isGood(int n) {
+//	int a = n % 10;
+//	int b = n / pow(10, number_count(n) - 1);
+//	return a == b;
+//}
+//
+//bool isSuperGood(int n) {
+//	int* a = new int[n];
+//	int sub = 0;
+//	if (isGood(n)) {
+//		for (int i = 1; i < n; i++) {
+//			if (isGood(i)) {
+//				a[sub] = i;
+//				sub++;
+//			}
+//		}
+//
+//		for (int i = 0; i < sub - 1; i++) {
+//			for (int j = i + 1; j < sub; j++) {
+//				if (a[i] + a[j] == n)
+//					return true;
+//			}
+//		}
+//		return false;
+//	}
+//	return false;
+//	delete[] a;
+//}
+//
+//int main()
+//{
+//	int count = 0;
+//	for (int i = 1000; i <= 9999; i++) {
+//		if (isSuperGood(i)) {
+//			count++;
+//		}
+//	}
+//	cout << count;
+//	
+//}
+#include<iostream>
+#include<vector>
+using namespace std;
+
+string key_0(vector<int> a) {
+	string value = "";
+
+	for (int i = 1; i <= size(a); i++) {
+		value += " ";
+	}
+	
+	return value;
+}
+string key_2(vector<int> a) {
+	int char_number_of_key2 = 3;
+	int n = size(a);
+	int index = n % char_number_of_key2;
+	string value = "";
+	switch (index)
+	{
+		case 1: {
+			value = "a";
+			break;
+		}
+		case 2: {
+			value = "b";
+			break;
+		}
+		case 0: {
+			value = "c";
+			break;
+		}
+	default:
+		break;
+	}
+	return value;
+}
+string key_3(vector<int> a) {
+	int char_number_of_key2 = 3;
+	int n = size(a);
+	int index = n % char_number_of_key2;
+	string value = "";
+	switch (index)
+	{
+	case 1: {
+		value = "d";
+		break;
+	}
+	case 2: {
+		value = "e";
+		break;
+	}
+	case 0: {
+		value = "f";
+		break;
+	}
+	default:
+		break;
+	}
+	return value;
+}
+string key_4(vector<int> a) {
+	int char_number_of_key2 = 3;
+	int n = size(a);
+	int index = n % char_number_of_key2;
+	string value = "";
+	switch (index)
+	{
+	case 1: {
+		value = "g";
+		break;
+	}
+	case 2: {
+		value = "h";
+		break;
+	}
+	case 0: {
+		value = "i";
+		break;
+	}
+	default:
+		break;
+	}
+	return value;
+}
+string key_5(vector<int> a) {
+	int char_number_of_key2 = 3;
+	int n = size(a);
+	int index = n % char_number_of_key2;
+	string value = "";
+	switch (index)
+	{
+	case 1: {
+		value = "j";
+		break;
+	}
+	case 2: {
+		value = "k";
+		break;
+	}
+	case 0: {
+		value = "l";
+		break;
+	}
+	default:
+		break;
+	}
+	return value;
+}
+string key_6(vector<int> a) {
+	int char_number_of_key2 = 3;
+	int n = size(a);
+	int index = n % char_number_of_key2;
+	string value = "";
+	switch (index)
+	{
+	case 1: {
+		value = "m";
+		break;
+	}
+	case 2: {
+		value = "n";
+		break;
+	}
+	case 0: {
+		value = "o";
+		break;
+	}
+	default:
+		break;
+	}
+	return value;
+}
+string key_7(vector<int> a) {
+	int char_number_of_key2 = 4;
+	int n = size(a);
+	int index = n % char_number_of_key2;
+	string value = "";
+	switch (index)
+	{
+	case 1: {
+		value = "p";
+		break;
+	}
+	case 2: {
+		value = "q";
+		break;
+	}
+	case 3: {
+		value = "r";
+		break;
+	}
+	case 4: {
+		value = "s";
+		break;
+	}
+	default:
+		break;
+	}
+	return value;
+}
+string key_8(vector<int> a) {
+	int char_number_of_key2 = 3;
+	int n = size(a);
+	int index = n % char_number_of_key2;
+	string value = "";
+	switch (index)
+	{
+	case 1: {
+		value = "t";
+		break;
+	}
+	case 2: {
+		value = "u";
+		break;
+	}
+	case 0: {
+		value = "v";
+		break;
+	}
+	default:
+		break;
+	}
+	return value;
+}
+string key_9(vector<int> a) {
+	int char_number_of_key2 = 4;
+	int n = size(a);
+	int index = n % char_number_of_key2;
+	string value = "";
+	switch (index)
+	{
+	case 1: {
+		value = "w";
+		break;
+	}
+	case 2: {
+		value = "x";
+		break;
+	}
+	case 3: {
+		value = "y";
+		break;
+	}
+	case 4: {
+		value = "z";
+		break;
+	}
+	default:
+		break;
+	}
+	return value;
+}
+string selectFunction(vector<int> a, int number) {
+	string value = "";
+	switch (number)
+	{
+	case 0: {
+		value = key_0(a);
+		break;
+	}
+	case 2: {
+		value = key_2(a);
+		break;
+	}
+	case 3: {
+		value = key_3(a);
+		break;
+	}
+	case 4: {
+		value = key_4(a);
+		break;
+	}
+	case 5: {
+		value = key_5(a);
+		break;
+	}
+	case 6: {
+		value = key_6(a);
+		break;
+	}
+	case 7: {
+		value = key_7(a);
+		break;
+	}
+	case 8: {
+		value = key_8(a);
+		break;
+	}
+	case 9: {
+		value = key_9(a);
+		break;
+	}
+	}
+	
+	
+	return value;
+}
+
+void splitArray(vector<int> a, int index, string& result) {
+	if (index > size(a) - 1) {
+		return;
+	}
+	if (index == size(a) - 1) {
+		vector<int> b;
+		b.push_back(a[size(a) - 1]);
+		string value = selectFunction(b, b[0]);
+		result += value;
+	}
+	else {
+		vector<int> b;
+		int count = 0;
+		for (int i = index + 1; i < size(a); i++) {
+			if (a[index] != a[i]) {
+				for (int j = index; j < i; j++) {
+					b.push_back(a[j]);
+				}
+				string value = selectFunction(b, b[0]);
+				result += value;
+				index = i;
+				break;
+			}
+			
+		}
+		splitArray(a, index, result);
+	}
+}
+
+int main()
+{
+	vector<int> a = { 5,5,4,4 ,0,0,2,6,6,4 };
+	string result = "";
+	splitArray(a,0, result);
+	cout << result;
+}

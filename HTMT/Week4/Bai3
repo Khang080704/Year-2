@@ -1,0 +1,52 @@
+.data
+    kitu: .asciiz "Nhap mot ky tu hoa: "
+    lowercase_msg: .asciiz "\nKy tu thuong: "
+    not_lowercase_msg: .asciiz "   \nKhong phai ky tu hoa!"
+.text
+    # In prompt
+    li $v0, 4
+    la $a0, kitu
+    syscall
+
+    # Nhap ki tu 
+    li $v0, 12
+    syscall
+
+    # Luu $v0 vao ki tu
+    sw $v0,kitu
+
+    # Load kitu vao $s0
+    lw $s0,kitu
+
+    # Kiem tra xem ki tu co phai la ki tu hoa khong
+    li $t1, 'A' 
+    li $t2, 'Z' 
+    ble $s0, $t1, not_uppercase
+    bgt $s0, $t2, not_uppercase
+
+    # Neu ki tu la ki tu hoa thi chuyen thanh ki tu thuong  
+    add $s0, $s0, 32 # tang gia tri ASCII len 32
+    move $t3,$s0
+
+    # sau do in ra tb
+    li $v0, 4
+    la $a0, lowercase_msg
+    syscall
+
+# xuat kitu
+    la $a0, kitu
+    move $a0, $t3
+    li $v0, 11
+    syscall
+
+    j end
+
+not_uppercase:
+    # In thong bao ki tu khong phai la ki tu hoa
+    li $v0, 4
+    la $a0, not_lowercase_msg
+    syscall
+
+end:
+    li $v0, 10
+    syscall

@@ -1,0 +1,71 @@
+.data 	
+	tb1: .asciiz "f = "
+	tb2: .asciiz "\nc = "
+.text 
+	li $s0,50 # f=50
+	#truyen tham so
+	move $a0,$s0 
+	#goi ham
+	jal _toCent
+	#lay ket qua tra ve luu vao s1
+	move $s1,$v0
+
+	#xuat tb1
+	li $v0,4
+	la $a0,tb1
+	syscall 
+
+	#xuat f
+	li $v0,1
+	move $a0,$s0
+	syscall 
+
+	#xuat tb2
+	li $v0,4
+	la $a0,tb2
+
+	syscall 
+	#xuat c
+	li $v0,1
+	move $a0,$s1
+	syscall
+	
+	#Ket thuc ham
+	li $v0,10
+	syscall 
+
+#========= Ham _toCent ===========
+#dau thu tuc
+_toCent:
+	#khai bao stack
+	addi $sp,$sp,-32
+	#backup thanh ghi
+	sw $ra,($sp)
+	sw $s0,4($sp)
+	sw $s1,8($sp)
+#Than thu tuc
+	addi $s0,$a0,-32  # v = x - 32
+	# v = 5 * v
+	li $s1,5	
+	mul $s0,$s0,5
+	
+
+	# v = v / 9
+	li $s1,9
+	div $s0,$s1
+	mflo $s0
+
+	#Luu ket qua tra ve $s0 vao $v0
+	move $v0,$s0
+
+#cuoi thu tuc
+	#restore cac thanh ghi
+	lw $ra,($sp)
+	lw $s0,4($sp)
+	lw $s1,8($sp)
+
+	#Xoa stack
+	addi $sp,$sp,32
+	
+	#quay ve
+	jr $ra

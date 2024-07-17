@@ -1,0 +1,114 @@
+#include<iostream>
+using namespace std;
+struct Node {
+	int data;
+	Node* pNext;
+};
+struct List {
+	Node* head;
+	Node* tail;
+};
+void khoitao(List& list) {
+	list.head = list.tail = NULL;
+}
+Node* createNode(int value) {
+	Node* p = new Node;
+	if (p == NULL) {
+		return NULL;
+	}
+	p->data = value;
+	p->pNext = NULL;
+}
+bool isEmpty(List& list) {
+	if (list.head == NULL && list.tail == NULL) {
+		return true;
+	}
+	return false;
+}
+void addEmpty(List& list,int value) {
+	Node* p = createNode(value);
+	list.head = list.tail = p;
+}
+void addLast(List& list, int value) {
+	if (isEmpty(list)) {
+		addEmpty(list, value);
+	}
+	else {
+		Node* p = createNode(value);
+		list.tail->pNext = p;
+		list.tail = p;
+	}
+}
+void delHead(List& list) {
+	if (list.head == list.tail) {
+		Node* p = list.head;
+		list.head = list.tail = NULL;
+		delete p;
+	}
+	else {
+		Node* p = list.head;
+		list.head = list.head->pNext;
+		p->pNext = NULL;
+		delete p;
+	}
+	
+}
+void delTail(List& list) {
+	if (list.head == list.tail) {
+		Node* p = list.head;
+		list.head = list.tail = NULL;
+		delete p;
+	}
+	else {
+		Node* cur = list.head;
+		Node* after = cur->pNext;
+		while (after != list.tail) {
+			cur = cur->pNext;
+			after = cur->pNext;
+		}
+		cur->pNext = NULL;
+		list.tail = cur;
+		delete after;
+	}
+	
+}
+void printList(List l) {
+	for (Node* i = l.head; i != NULL; i = i->pNext) {
+		cout << i->data << " ";
+	}
+}
+void daoNguocBangVongLap(List& list) {
+	list.tail = list.head;
+	Node* current = list.head;
+	Node* pre = NULL;
+	Node* next = NULL;
+	while (current != NULL) {
+		next = current->pNext;
+		current->pNext = pre;
+		pre = current;
+		current = next;
+	}
+	list.head = pre;
+}
+Node* deQuy(Node*& head) {
+	if (head == NULL || head->pNext == NULL) {
+		return head;
+	}
+	else {
+		Node* rest = deQuy(head->pNext);
+		head->pNext->pNext = head;
+		head->pNext = NULL;
+		return rest;
+	}
+}
+
+int main()
+{
+	List list;
+	khoitao(list);
+	addLast(list, 1);
+	printList(list);
+	cout << endl;
+	delHead(list);
+	printList(list);
+}

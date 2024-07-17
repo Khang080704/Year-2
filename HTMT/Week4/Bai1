@@ -1,0 +1,29 @@
+.data 
+	Str: .space 16
+	enterString: .asciiz "Nhap Chuoi:"
+	outerString: .asciiz "\nXuat Chuoi:"
+.text 
+	# in tb1
+		li $v0,4
+		la $a0,enterString
+		syscall
+	# nhap chuoi	
+		li $v0,8 
+		la $a0, Str 
+		li $a1, 16 # chieu dai cua bien luu chuoi 
+		move $t0, $a0 
+		syscall
+	# in tb2	
+		li $v0,4
+		la $a0,outerString
+		syscall
+
+	# xuat chuoi	
+		la $a0, Str
+		move $a0, $t0
+		li $v0, 4 
+		syscall
+
+	#ket thuc	
+		li $v0, 10
+		syscall
